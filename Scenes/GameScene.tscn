@@ -1,0 +1,403 @@
+[gd_scene format=3 uid="uid://b0pwsc82r14h1"]
+
+[ext_resource type="Script" uid="uid://bx1txg2dukof1" path="res://Scripts/Main.gd" id="1_lohlh"]
+[ext_resource type="PackedScene" uid="uid://d0wqxaq1sr2v2" path="res://Scenes/Player.tscn" id="2_4bvgx"]
+[ext_resource type="Texture2D" uid="uid://xbyiq3owfto8" path="res://Sprites/FBBackground.png" id="2_lohlh"]
+[ext_resource type="PackedScene" uid="uid://dr457tjbg5ov0" path="res://Scenes/Pipes.tscn" id="3_jwv4s"]
+[ext_resource type="Texture2D" uid="uid://emkyumqag6mj" path="res://Sprites/FBGround.png" id="3_lohlh"]
+[ext_resource type="FontFile" uid="uid://8u8uogfmvnpl" path="res://Symtext.ttf" id="5_qolck"]
+[ext_resource type="Texture2D" uid="uid://dfwcrk8qlj3px" path="res://Sprites/FBPause.png" id="6_gipt1"]
+[ext_resource type="Script" uid="uid://wwrdi73hu55b" path="res://Scripts/GameOver.gd" id="6_y30xb"]
+[ext_resource type="Texture2D" uid="uid://qxe1ymt314ax" path="res://Sprites/FBPaused.png" id="7_pgw7i"]
+[ext_resource type="Texture2D" uid="uid://coe8fry8l28gp" path="res://Sprites/restart.png" id="7_xhjei"]
+[ext_resource type="Script" uid="uid://cw8xni3c7h1w1" path="res://Scripts/Restart.gd" id="8_6vvcf"]
+[ext_resource type="Script" uid="uid://28byjyw1otb8" path="res://Scripts/pause_button.gd" id="8_pgw7i"]
+[ext_resource type="Texture2D" uid="uid://bpqm4edhm4cvo" path="res://Sprites/GameOverFlappyBird.png" id="9_cr6v8"]
+[ext_resource type="AudioStream" uid="uid://c8slmpt31xru0" path="res://sfx_point.mp3" id="10_cr6v8"]
+[ext_resource type="Texture2D" uid="uid://dw7uytuf1m40c" path="res://Sprites/FBMedal4.png" id="11_4v654"]
+[ext_resource type="AudioStream" uid="uid://u6vtv5avm3s3" path="res://sfx_die.mp3" id="11_f43ej"]
+[ext_resource type="AudioStream" uid="uid://lp6d01pqwyn7" path="res://flappy-bird-fly.mp3" id="12_7rq2r"]
+[ext_resource type="Texture2D" uid="uid://l6qpibqcntd2" path="res://Sprites/FBMedal1.png" id="12_leul7"]
+[ext_resource type="Texture2D" uid="uid://bfcj3adauxjfe" path="res://Sprites/FBMedal2.png" id="13_wp4mh"]
+[ext_resource type="AudioStream" uid="uid://b8af1bd0brx01" path="res://sfx_swooshing.mp3" id="14_ry528"]
+[ext_resource type="Texture2D" uid="uid://b2a15kfi4hnyb" path="res://Sprites/FBRecors.png" id="14_v7xhk"]
+[ext_resource type="Texture2D" uid="uid://8xukk6sbeem2" path="res://Sprites/FBMedal3.png" id="14_y0yaw"]
+[ext_resource type="Texture2D" uid="uid://gys6eley6h4r" path="res://Sprites/FlappyBirdText.png" id="15_gipt1"]
+[ext_resource type="Texture2D" uid="uid://bb6jwrwrqjs03" path="res://Sprites/FlappyBirdStart.png" id="16_pgw7i"]
+[ext_resource type="Script" uid="uid://bwxwuaci05t62" path="res://Scripts/PlayButton.gd" id="17_v7xhk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gyc6d"]
+size = Vector2(4000, 1000)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g7b7a"]
+font = ExtResource("5_qolck")
+font_size = 60
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 15
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lohlh"]
+font = ExtResource("5_qolck")
+font_size = 15
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g7b7a"]
+size = Vector2(2814, 346)
+
+[sub_resource type="LabelSettings" id="LabelSettings_f43ej"]
+font = ExtResource("5_qolck")
+font_size = 30
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_7rq2r"]
+resource_name = "GameOver"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(3, 0.3, 0.3),
+"update": 0,
+"values": [Vector2(0, 1200), Vector2(0, 400), Vector2(0, 100)]
+}
+
+[sub_resource type="Animation" id="Animation_124qp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1067)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qolck"]
+_data = {
+&"GameOver": SubResource("Animation_7rq2r"),
+&"RESET": SubResource("Animation_124qp")
+}
+
+[sub_resource type="Animation" id="Animation_yhlfj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(326, 347)]
+}
+
+[sub_resource type="Animation" id="Animation_gipt1"]
+resource_name = "idk"
+length = 1.5999999999999999
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6),
+"transitions": PackedFloat32Array(2, 2, 2, 2, 2),
+"update": 0,
+"values": [Vector2(326, 325), Vector2(326, 275), Vector2(326, 225), Vector2(326, 275), Vector2(326, 325)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pgw7i"]
+_data = {
+&"RESET": SubResource("Animation_yhlfj"),
+&"idk": SubResource("Animation_gipt1")
+}
+
+[sub_resource type="Animation" id="Animation_qolck"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ry528"]
+resource_name = "Start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -775)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yhlfj"]
+_data = {
+&"RESET": SubResource("Animation_qolck"),
+&"Start": SubResource("Animation_ry528")
+}
+
+[node name="Main" type="Node2D" unique_id=447693224 node_paths=PackedStringArray("pointasp", "game_over_anim")]
+script = ExtResource("1_lohlh")
+pointasp = NodePath("Sounds/Point")
+game_over_anim = NodePath("GameOver/CanvasLayer/Control/AnimationPlayer")
+
+[node name="HUD" type="Node" parent="." unique_id=781937026]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="HUD" unique_id=948839393]
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="HUD/CanvasLayer" unique_id=991074858]
+position = Vector2(494, 700)
+shape = SubResource("RectangleShape2D_gyc6d")
+shape_visible = false
+action = "ui_accept"
+
+[node name="Score" type="Label" parent="HUD/CanvasLayer" unique_id=1178138625]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -11.0
+offset_top = 85.0
+offset_right = 79.0
+offset_bottom = 148.0
+grow_horizontal = 2
+text = "test"
+label_settings = SubResource("LabelSettings_g7b7a")
+
+[node name="FPSLabel" type="Label" parent="HUD/CanvasLayer" unique_id=2118696822]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = -27.0
+offset_right = 39.0
+offset_bottom = -5.0
+grow_vertical = 0
+text = "test"
+label_settings = SubResource("LabelSettings_lohlh")
+
+[node name="PauseButton" type="TextureButton" parent="HUD/CanvasLayer" unique_id=161601199 node_paths=PackedStringArray("clicksound")]
+process_mode = 3
+anchors_preset = -1
+anchor_left = 0.128
+anchor_top = 0.075
+anchor_right = 0.128
+anchor_bottom = 0.075
+offset_left = -51.944
+offset_top = -56.4
+offset_right = -25.944
+offset_bottom = -28.400002
+scale = Vector2(4, 4)
+focus_mode = 0
+texture_normal = ExtResource("6_gipt1")
+texture_pressed = ExtResource("7_pgw7i")
+texture_hover = ExtResource("7_pgw7i")
+script = ExtResource("8_pgw7i")
+clicksound = NodePath("../../../Sounds/Click")
+
+[node name="ScoreTimer" type="Timer" parent="HUD" unique_id=1454847028]
+wait_time = 3.0
+one_shot = true
+
+[node name="Environment" type="Node" parent="." unique_id=525306423]
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment" unique_id=294841460]
+position = Vector2(364, 500)
+scale = Vector2(2.5138888, 2.2109373)
+texture = ExtResource("2_lohlh")
+
+[node name="Parallax2D" type="Parallax2D" parent="Environment" unique_id=2074849699]
+scale = Vector2(1.5, 1.5)
+scroll_offset = Vector2(-873, -188)
+repeat_size = Vector2(616, 0)
+autoscroll = Vector2(-400, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Environment/Parallax2D" unique_id=1156203022]
+position = Vector2(320, 851.3333)
+scale = Vector2(2, 2)
+texture = ExtResource("3_lohlh")
+
+[node name="Pipes" type="Node" parent="Environment" unique_id=1437350966]
+
+[node name="Timer" type="Timer" parent="Environment/Pipes" unique_id=88964580]
+wait_time = 2.0
+autostart = true
+
+[node name="Pipes" parent="Environment/Pipes" unique_id=1499190873 node_paths=PackedStringArray("game_over_anim") instance=ExtResource("3_jwv4s")]
+visible = false
+position = Vector2(-261, 14)
+game_over_anim = NodePath("../../../GameOver/CanvasLayer/Control/AnimationPlayer")
+
+[node name="Area2D" type="Area2D" parent="Environment" unique_id=352494350]
+position = Vector2(-19, -31)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Area2D" unique_id=1553712189]
+position = Vector2(871, 1130)
+shape = SubResource("RectangleShape2D_g7b7a")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment/Area2D" unique_id=196323938]
+position = Vector2(785, -135)
+shape = SubResource("RectangleShape2D_g7b7a")
+
+[node name="Character" type="Node" parent="." unique_id=1542102490]
+
+[node name="Player" parent="Character" unique_id=2132462300 node_paths=PackedStringArray("game_over_anim", "flyasp", "dieasp", "ScoreLabel", "PauseButton") instance=ExtResource("2_4bvgx")]
+position = Vector2(211, 355)
+scale = Vector2(2, 2)
+game_over_anim = NodePath("../../GameOver/CanvasLayer/Control/AnimationPlayer")
+flyasp = NodePath("../../Sounds/Fly")
+dieasp = NodePath("../../Sounds/Die")
+ScoreLabel = NodePath("../../HUD/CanvasLayer/Score")
+PauseButton = NodePath("../../HUD/CanvasLayer/PauseButton")
+
+[node name="GameOver" type="Node" parent="." unique_id=427723710]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="GameOver" unique_id=1227235802]
+
+[node name="Control" type="Control" parent="GameOver/CanvasLayer" unique_id=1481312495 node_paths=PackedStringArray("medal_rect")]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 1067.0
+offset_right = 40.0
+offset_bottom = 1107.0004
+script = ExtResource("6_y30xb")
+medal_rect = NodePath("TextureRect3")
+bronze_tex = ExtResource("11_4v654")
+silver_tex = ExtResource("12_leul7")
+gold_tex = ExtResource("13_wp4mh")
+platinum_tex = ExtResource("14_y0yaw")
+
+[node name="TextureRect2" type="TextureRect" parent="GameOver/CanvasLayer/Control" unique_id=1873841719]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 351.0
+offset_right = 325.0
+offset_bottom = 467.0
+scale = Vector2(2, 2)
+texture = ExtResource("14_v7xhk")
+
+[node name="TextureRect3" type="TextureRect" parent="GameOver/CanvasLayer/Control" unique_id=1977022068]
+layout_mode = 0
+offset_left = 151.0
+offset_top = 435.0
+offset_right = 195.0
+offset_bottom = 479.0
+scale = Vector2(2, 2)
+
+[node name="TextureButton" type="TextureButton" parent="GameOver/CanvasLayer/Control" unique_id=481515851 node_paths=PackedStringArray("clicksound")]
+layout_mode = 0
+offset_left = 222.0
+offset_top = 600.0
+offset_right = 342.0
+offset_bottom = 642.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("7_xhjei")
+script = ExtResource("8_6vvcf")
+clicksound = NodePath("../../../../Sounds/Click")
+
+[node name="TextureRect" type="TextureRect" parent="GameOver/CanvasLayer/Control" unique_id=1447974137]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 214.0
+offset_right = 618.0
+offset_bottom = 341.0
+texture = ExtResource("9_cr6v8")
+
+[node name="BestLabel" type="Label" parent="GameOver/CanvasLayer/Control" unique_id=568026265]
+layout_mode = 0
+offset_left = 438.0
+offset_top = 493.0
+offset_right = 535.0
+offset_bottom = 538.0
+text = "Test"
+label_settings = SubResource("LabelSettings_f43ej")
+
+[node name="ScoreLabel" type="Label" parent="GameOver/CanvasLayer/Control" unique_id=718301027]
+layout_mode = 0
+offset_left = 438.0
+offset_top = 405.0
+offset_right = 535.0
+offset_bottom = 450.0
+text = "Test"
+label_settings = SubResource("LabelSettings_f43ej")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameOver/CanvasLayer/Control" unique_id=1760219138]
+libraries/ = SubResource("AnimationLibrary_qolck")
+
+[node name="Sounds" type="Node" parent="." unique_id=830951201]
+
+[node name="Point" type="AudioStreamPlayer" parent="Sounds" unique_id=642248332]
+stream = ExtResource("10_cr6v8")
+
+[node name="Die" type="AudioStreamPlayer" parent="Sounds" unique_id=570902961]
+stream = ExtResource("11_f43ej")
+
+[node name="Fly" type="AudioStreamPlayer" parent="Sounds" unique_id=1638383422]
+stream = ExtResource("12_7rq2r")
+
+[node name="Click" type="AudioStreamPlayer" parent="Sounds" unique_id=1985316753]
+stream = ExtResource("14_ry528")
+
+[node name="MainMenu" type="Node" parent="." unique_id=1827635177]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="MainMenu" unique_id=190533002]
+
+[node name="Control" type="Control" parent="MainMenu/CanvasLayer" unique_id=133785772]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D3" type="Sprite2D" parent="MainMenu/CanvasLayer/Control" unique_id=1378074261]
+position = Vector2(326, 347)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("15_gipt1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenu/CanvasLayer/Control/Sprite2D3" unique_id=698435693]
+libraries/ = SubResource("AnimationLibrary_pgw7i")
+autoplay = &"idk"
+
+[node name="TextureButton" type="TextureButton" parent="MainMenu/CanvasLayer/Control" unique_id=463417893 node_paths=PackedStringArray("clicksound", "start_player")]
+layout_mode = 0
+offset_left = 199.0
+offset_top = 634.0
+offset_right = 481.0
+offset_bottom = 734.0
+texture_normal = ExtResource("16_pgw7i")
+script = ExtResource("17_v7xhk")
+clicksound = NodePath("../../../../Sounds/Click")
+start_player = NodePath("../AnimationPlayer2")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="MainMenu/CanvasLayer/Control" unique_id=40067981]
+libraries/ = SubResource("AnimationLibrary_yhlfj")
+
+[connection signal="timeout" from="HUD/ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="Environment/Pipes/Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Environment/Area2D" to="Character/Player" method="_on_area_2d_body_entered"]
+[connection signal="pressed" from="GameOver/CanvasLayer/Control/TextureButton" to="GameOver/CanvasLayer/Control/TextureButton" method="_on_pressed"]
+[connection signal="pressed" from="MainMenu/CanvasLayer/Control/TextureButton" to="MainMenu/CanvasLayer/Control/TextureButton" method="_on_pressed"]
+[connection signal="ready" from="MainMenu/CanvasLayer/Control/TextureButton" to="MainMenu/CanvasLayer/Control/TextureButton" method="_on_ready"]
